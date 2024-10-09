@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="cartItems">
+        <h2>Order</h2>
+        <div class="cart-item">
+          <span>Pizza (x2)</span>
+          <span>$30.00</span>
+        </div>
+        <div class="cart-item">
+          <span>Burger (x1)</span>
+          <span>$10.00</span>
+        </div>
+        <div class="cart-summary">Total: $40.00</div>
+      </div>
+
+      <!-- Billing -->
+      <div>
+        <h3>Billing</h3>
+        <div class="billing-item">
+          <span>Full Name:</span>
+          <span>John Doe</span>
+        </div>
+        <div class="billing-item">
+          <span>Email:</span>
+          <span>john@example.com</span>
+        </div>
+        <div class="billing-item">
+          <span>Phone:</span>
+          <span>1234567890</span>
+        </div>
+        <div class="billing-item">
+          <span>Address:</span>
+          <span> 123 Main St, New York, NY 10001 </span>
+        </div>
+      </div>
+
+      <form action="/pay" method="POST">
+        <input type="hidden" name="userId" value="1" />
+        <input
+          type="hidden"
+          name="items"
+          id="itemsInput"
+          value='[{"name":"Pizza","quantity":2,"price":15},{"name":"Burger","quantity":1,"price":10}]'
+        />
+        <input
+          type="hidden"
+          name="billingDetails"
+          value='{"full_name":"John Doe","email":"john@example.com","phone":"1234567890","address_line_1":"123 Main St","city":"New York","state":"NY","postal_code":"10001","country":"USA"}'
+        />
+
+        <button type="submit">Pay with PayPal</button>
+      </form>
+
+      <div class="refund-section">
+        <h2>Refund</h2>
+        <form
+          style="display: flex; flex-direction: column; width: fit-content"
+          action="/refund"
+          method="POST"
+        >
+          <label for="userId">User ID:</label>
+          <input type="number" name="userId" id="userId" value="1" required />
+
+          <label for="paymentId">Payment ID:</label>
+          <input
+            type="number"
+            name="paymentId"
+            id="paymentId"
+            value="1"
+            required
+          />
+
+          <label for="refundAmount">Refund Amount:</label>
+          <input
+            type="number"
+            name="refundAmount"
+            id="refundAmount"
+            value="10"
+            required
+          />
+
+          <button type="submit">Refund</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
